@@ -1,0 +1,23 @@
+1、分布式设计与开发（六）------让memcached分布式：http://blog.csdn.net/cutesource/article/details/5848253
+1、每天进步一点点——五分钟理解一致性哈希算法(consistent hashing) ：http://blog.csdn.net/cywosp/article/details/23397179/
+1、浅谈Java中的hashcode方法：http://www.cnblogs.com/dolphin0520/p/3681042.html
+
+
+
+2、Redis Cluster（Redis 3.X）设计要点：http://blog.csdn.net/yfkiss/article/details/39996129
+2、redis-cluster研究和使用（3.X）：http://hot66hot.iteye.com/blog/2050676
+2、基于redis分布式缓存实现(2.x):http://blog.csdn.net/pi9nc/article/details/17719737
+2、Redis 命令参考：http://doc.redisfans.com/
+
+
+
+4、Redis和Memcached的区别：http://www.biaodianfu.com/redis-vs-memcached.html
+4、谈谈Memcached与Redis(一)：http://blog.sina.com.cn/s/blog_48c95a1901016903.html
+4、memcached无法存储复杂对象？：http://www.iteye.com/problems/51371
+
+
+
+5、MySQL主从复制（Master-Slave）与读写分离（MySQL-Proxy）实践:http://www.cnblogs.com/DavidYan/articles/2531181.html
+                                                               http://blog.csdn.net/cutesource/article/details/5710645
+
+5、redis作为mysql的缓存服务器(读写分离)：http://www.iyunv.com/thread-52670-1-1.html
