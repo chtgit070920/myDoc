@@ -21,3 +21,6 @@
                                                                http://blog.csdn.net/cutesource/article/details/5710645
 
 5、redis作为mysql的缓存服务器(读写分离)：http://www.iyunv.com/thread-52670-1-1.html
+
+
+
