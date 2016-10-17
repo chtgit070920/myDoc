@@ -1,0 +1,3200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://www.zhihu.com/question/20289071 -->
+<html lang="zh-CN" dropeffect="none" class="js no-auth  is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/za-0.1.1.min.js"></script><script async="" src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/ga.js"></script>
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-ZA-Response-Id" content="0010115790020722">
+<meta http-equiv="X-ZA-Experiment" content="default:None">
+
+<title>
+
+
+如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎
+
+
+</title>
+
+<meta name="apple-itunes-app" content="app-id=432274380, app-argument=zhihu://questions/20289071">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="mobile-agent" content="format=html5;url=http://www.zhihu.com/question/20289071">
+<meta id="znonce" name="znonce" content="64fa2a7f6ddd4a5e8dc3b5cc75565cab">
+
+
+
+<link rel="apple-touch-icon" href="http://static.zhihu.com/static/revved/img/ios/touch-icon-152.87c020b9.png" sizes="152x152">
+<link rel="apple-touch-icon" href="http://static.zhihu.com/static/revved/img/ios/touch-icon-120.496c913b.png" sizes="120x120">
+<link rel="apple-touch-icon" href="http://static.zhihu.com/static/revved/img/ios/touch-icon-76.dcf79352.png" sizes="76x76">
+<link rel="apple-touch-icon" href="http://static.zhihu.com/static/revved/img/ios/touch-icon-60.9911cffb.png" sizes="60x60">
+
+
+<link rel="shortcut icon" href="http://static.zhihu.com/static/favicon.ico" type="image/x-icon">
+
+<link rel="search" type="application/opensearchdescription+xml" href="http://static.zhihu.com/static/search.xml" title="知乎">
+<link rel="stylesheet" href="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/z.ffaf43f6.css">
+
+
+
+<meta name="google-site-verification" content="FTeR0c8arOPKh8c5DYh_9uu98_zJbaWw53J-Sch9MTg">
+
+
+
+<!--[if lt IE 9]>
+<script src="http://static.zhihu.com/static/components/respond/dest/respond.min.js"></script>
+<link href="http://static.zhihu.com/static/components/respond/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+<link href="/static/components/respond/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+<script src="/static/components/respond/cross-domain/respond.proxy.js"></script>
+<![endif]-->
+<script src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/instant.14757a4a.js"></script>
+
+
+
+
+<style type="text/css">._colors_text-muted_5fu-{color:#999}</style><style type="text/css">._Pager_root_2GoR{font-size:1.1em;text-align:center;line-height:3}._Pager_item_3xy4{padding:.5em;-webkit-transition:color .5s ease;transition:color .5s ease}</style><style type="text/css">._InputBox_root_1Xwi{width:100%;padding:9px 12px;min-height:38px;min-height:22px\9;line-height:1.4;color:#222;cursor:text;border:1px solid #ddd;border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.1);box-sizing:border-box;background:#fff}._InputBox_root_1Xwi:focus{border:1px solid #ccc}._InputBox_blur_3JWV._InputBox_empty_3_ur:before{content:attr(placeholder);color:#999}</style><style type="text/css">._CommentBox_dialog_2jQ_.modal-dialog{width:520px}._CommentBox_dialog_2jQ_.modal-dialog .modal-dialog-content{margin:0;padding:0}._CommentBox_root_G_1m{position:relative;margin-top:1em;margin-bottom:3em}._CommentBox_root_G_1m._CommentBox_embedded_1c_2{margin:0}._CommentBox_root_G_1m._CommentBox_embedded_1c_2._CommentBox_empty_1VbA{padding:1em}._CommentBox_root_G_1m._CommentBox_bordered_3Fo-{border:1px solid #ddd;border-radius:4px;box-shadow:0 1px 1px rgba(0,0,0,.05)}._CommentBox_list_10_K{padding-left:1em;padding-right:1em}._CommentBox_pagerBorder_yuO1{border-top:1px solid #eee}._CommentBox_list_10_K[hidden]+._CommentBox_pagerBorder_yuO1,._CommentBox_pagerBorder_yuO1[hidden]{border-top:none}._CommentBox_inConversations_MnYD{margin:0}._CommentBox_inConversations_MnYD ._CommentBox_list_10_K{margin:17px;padding:0;border:none}._CommentBox_inConversations_MnYD ._CommentBox_list_10_K._CommentBox_scrollable_87FS{padding-right:.1em}._CommentBox_inConversations_MnYD ._CommentBox_list_10_K>:first-child{padding-top:0}._CommentBox_inConversations_MnYD ._CommentBox_list_10_K>:last-child{padding-bottom:0}._CommentBox_button_1bar{font-size:.9em;cursor:pointer}._CommentBox_textButton_3t9_{padding:0;border:0;outline:0;background:none;cursor:pointer;color:#999}._CommentBox_textButton_3t9_:focus,html.no-touchevents ._CommentBox_textButton_3t9_:hover{color:#778087}._CommentBox_scrollable_87FS{padding-right:.9em;overflow-y:auto;max-height:550px;max-height:60vh;-webkit-overflow-scrolling:touch}@media (min-height:900px){._CommentBox_scrollable_87FS{max-height:550px}}._CommentBox_cannotCommentReason_1_q5{padding:1.5em 1em;border-radius:4px;text-align:center;background:#fbfbfb;border-top:1px solid #eee;color:#999}._CommentBox_root_G_1m._CommentBox_empty_1VbA ._CommentBox_cannotCommentReason_1_q5{border:none;background:#fff}._CommentBox_root_G_1m._CommentBox_embedded_1c_2 ._CommentBox_cannotCommentReason_1_q5{padding:.5em 1em}._CommentBox_loading_3DjF{padding:6px 12px;color:#999}._CommentBox_inConversations_MnYD ._CommentBox_loading_3DjF{padding:20px;text-align:center}._CommentBox_divider_3NgO{margin:0 -1em;height:0;color:#999;text-align:center;border-top:1px solid #eee}._CommentBox_divider_3NgO:last-child{margin-bottom:20px}._CommentBox_dividerText_eF9Y{position:relative;z-index:2;top:-.8em;padding:0 .8em;display:inline-block;background:#fff}._CommentBox_reviewNav_ipOY{padding:.5em 1em;border-bottom:1px solid #eee}._CommentBox_reviewDivider_3JDY{margin:0 .5em;color:#999}._CommentBox_reviewTab_25VS{color:#698ebf}._CommentBox_reviewTab_25VS._CommentBox_is-active_37tq{color:#999!important}html.no-touchevents ._CommentBox_reviewTab_25VS:hover{text-decoration:underline}._CommentBox_totalCount_277F{border-bottom:1px solid #eee;line-height:36px;text-indent:1em;font-size:14px}._CommentBox_commentListEmptyTip_1ril{display:table;height:65px;width:100%;text-align:center;font-size:14px;color:#666}._CommentBox_commentListEmptyTip_1ril span{display:table-cell;vertical-align:middle}</style><style type="text/css">._CommentForm_root_1-ko{position:relative;margin-top:1em}._CommentForm_bordered_2isg{margin:0;padding:1em;border-top:1px solid #eee;border-radius:0 0 4px 4px;background:#fbfbfb}._CommentForm_actions_ooEq{margin-top:1em;padding-bottom:0;text-align:right;line-height:33px;display:none}._CommentForm_expanded_39uD ._CommentForm_actions_ooEq{display:block}._CommentForm_submitButton_1N49{float:right}._CommentForm_cancelButton_cy3u{margin-right:1em}._CommentForm_mask_6Rp2{position:absolute;top:0;right:0;bottom:0;left:0}</style><style type="text/css">._CommentItem_root_PQNS{position:relative;list-style:none;outline:none;padding:.9em 0}._CommentItem_root_PQNS+._CommentItem_root_PQNS{border-top:1px solid #eee}._CommentItem_root_PQNS .OrgIcon{display:none}._CommentItem_deleted_3yx3{color:#999}._CommentItem_likes_2hey{float:right;padding-right:2px}._CommentItem_avatarLink_3V51{float:left;margin:4px 1em 0 0}._CommentItem_avatar_3i-F{width:25px;height:25px;border-radius:2px}._CommentItem_body_3qwB{overflow:hidden}._CommentItem_content_CYqW{min-height:22px;word-wrap:break-word;color:#222}._CommentItem_footer_46v8,._CommentItem_header_2JGh{color:#999}._CommentItem_footer_46v8,._CommentItem_footer_46v8 button{font-size:.95em}._CommentItem_action_Hk0w{margin-left:.6em;visibility:hidden}html.no-touchevents ._CommentItem_action_Hk0w:hover{color:#698ebf}._CommentItem_action_Hk0w._CommentItem_alwaysVisible_26qB,._CommentItem_root_PQNS._CommentItem_focusin_1khT ._CommentItem_action_Hk0w,._CommentItem_root_PQNS:hover ._CommentItem_action_Hk0w,html.touchevents ._CommentItem_action_Hk0w{visibility:visible}._CommentItem_action_Hk0w .zg-icon{margin-right:5px;width:12px;height:12px;vertical-align:-2px}@media screen and (max-width:420px){._CommentItem_action_Hk0w .zg-icon{display:none}}._CommentItem_openConversations_36xr{float:right;padding-right:0;visibility:visible;font-size:.95em}._CommentItem_openConversations_36xr i{margin-right:.5em}._CommentItem_reviewNotice_9OXH{margin-left:6px;vertical-align:-2px!important}</style><style type="text/css">[class*=sprite-comment-icon-]{display:inline-block;vertical-align:middle}.sprite-comment,[class*=sprite-comment-]{background-image:url(/static/revved/img/comment/sprites.auto.998a1f16.png);background-repeat:no-repeat}.sprite-comment-icon-approve-default{background-position:0 0;width:12px;height:12px}.sprite-comment-icon-approve-hover,html.no-touchevents .sprite-comment-icon-approve-default:hover,html.no-touchevents a:hover .sprite-comment-icon-approve-default,html.no-touchevents button:hover .sprite-comment-icon-approve-default{background-position:-14px 0;width:12px;height:12px}.sprite-comment-icon-invisible-default{background-position:0 -14px;width:12px;height:12px}.sprite-comment-icon-invisible-hover,html.no-touchevents .sprite-comment-icon-invisible-default:hover,html.no-touchevents a:hover .sprite-comment-icon-invisible-default,html.no-touchevents button:hover .sprite-comment-icon-invisible-default{background-position:-14px -14px;width:12px;height:12px}.sprite-comment-icon-open-conversations-default{background-position:-28px 0;width:12px;height:11px}.sprite-comment-icon-open-conversations-hover,html.no-touchevents .sprite-comment-icon-open-conversations-default:hover,html.no-touchevents a:hover .sprite-comment-icon-open-conversations-default,html.no-touchevents button:hover .sprite-comment-icon-open-conversations-default{background-position:-28px -13px;width:12px;height:11px}@media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi){.sprite-comment,[class*=sprite-comment-]{background-image:url(/static/revved/img/comment/sprites@2x.auto.987e6764.png);background-size:40px 26px}}</style></head>
+
+<body class="zhi  no-auth">
+
+
+
+<div role="navigation" class="zu-top" data-za-module="TopNavBar">
+<div class="zg-wrap modal-shifting clearfix" id="zh-top-inner">
+<a href="http://www.zhihu.com/" class="zu-top-link-logo" id="zh-top-link-logo" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_zhihu_logo">知乎</a>
+
+
+
+<ul class="topnav-noauth clearfix">
+<li>
+<a href="javascript:;" class="js-signup-noauth"><i class="zg-icon zg-icon-dd-home"></i>注册知乎</a>
+</li>
+<li>
+<a href="javascript:;" class="js-signin-noauth">登录</a>
+</li>
+</ul>
+
+
+
+<button class="zu-top-add-question" id="zu-top-add-question">提问</button>
+
+
+<div role="search" id="zh-top-search" class="zu-top-search">
+<form method="GET" action="http://www.zhihu.com/search" id="zh-top-search-form" class="zu-top-search-form">
+
+
+
+<input type="hidden" name="type" value="content">
+<label for="q" class="hide-text">知乎搜索</label><input type="text" class="zu-top-search-input" id="q" name="q" autocomplete="off" value="" placeholder="搜索你感兴趣的内容..." role="combobox" aria-autocomplete="list">
+<button type="submit" class="zu-top-search-button"><span class="hide-text">搜索</span><span class="sprite-global-icon-magnifier-dark"></span></button>
+</form>
+</div>
+
+
+
+<div id="zg-top-nav" class="zu-top-nav">
+<ul class="zu-top-nav-ul zg-clear">
+
+<li class="zu-top-nav-li " id="zh-top-nav-home">
+<a class="zu-top-nav-link" href="http://www.zhihu.com/" id="zh-top-link-home" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_home">首页</a>
+</li>
+
+
+
+<li class="top-nav-topic-selector zu-top-nav-li " id="zh-top-nav-topic">
+<a class="zu-top-nav-link" href="http://www.zhihu.com/topic" id="top-nav-dd-topic">话题</a>
+</li>
+
+<li class="zu-top-nav-li " id="zh-top-nav-explore">
+<a class="zu-top-nav-link" href="http://www.zhihu.com/explore">发现</a>
+</li>
+
+
+</ul>
+<div class="zu-top-nav-live zu-noti7-popup zg-r5px no-hovercard" id="zh-top-nav-live-new" role="popup" tabindex="0">
+<div class="zu-top-nav-live-inner zg-r5px">
+<div class="zu-top-live-icon">&nbsp;</div>
+<div class="zu-home-noti-inner" id="zh-top-nav-live-new-inner">
+<div class="zm-noti7-popup-tab-container clearfix" tabindex="0">
+<button class="zm-noti7-popup-tab-item message">
+<span class="icon">消息</span>
+</button>
+<button class="zm-noti7-popup-tab-item user">
+<span class="icon">用户</span>
+</button>
+<button class="zm-noti7-popup-tab-item thanks">
+<span class="icon">赞同和感谢</span>
+</button>
+</div>
+</div>
+<div class="zm-noti7-frame-border top"></div>
+<div class="zm-noti7-frame">
+<div class="zm-noti7-content message">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-content user" style="display:none;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-content thanks" style="display:none;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-frame-border bottom"></div>
+<div class="zm-noti7-popup-footer">
+<a href="http://www.zhihu.com/notifications" class="zm-noti7-popup-footer-all zg-right">查看全部 »</a>
+<a href="http://www.zhihu.com/settings/notification" class="zm-noti7-popup-footer-set" title="通知设置"><i class="zg-icon zg-icon-settings"></i></a>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+<div class="zg-wrap">
+<div class="zu-global-nitify-inner">
+<a class="zu-global-notify-close" href="javascript:;" title="关闭" name="close">x</a>
+<span class="zu-global-notify-icon"></span>
+<span class="zu-global-notify-msg"></span>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-redirect-info" style="display:none"></div>
+
+
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-notification-summary" style="display:none;">
+<div class="zg-wrap">
+<div class="zu-global-nitify-inner">
+<span class="zu-global-notify-icon"></span>
+<ul class="zu-question-notify-wrap">
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope="" itemtype="http://schema.org/Question" id="zh-single-question-page" data-urltoken="20289071" role="main">
+<div class="zu-main-content">
+<div class="zu-main-content-inner">
+
+
+<meta itemprop="isTopQuestion" content="false">
+<meta itemprop="visitsCount" content="94755">
+
+
+<div class="zm-tag-editor zg-section">
+<div class="zm-tag-editor-labels zg-clear">
+
+<a class="zm-item-tag" href="http://www.zhihu.com/topic/19550516" data-hovercard="t$b$19550516" data-token="19550516" data-topicid="98">
+Web 开发
+</a>
+
+<a class="zm-item-tag" href="http://www.zhihu.com/topic/19550901" data-hovercard="t$b$19550901" data-token="19550901" data-topicid="225">
+前端开发
+</a>
+
+<a class="zm-item-tag" href="http://www.zhihu.com/topic/19552521" data-hovercard="t$b$19552521" data-token="19552521" data-topicid="769">
+JavaScript
+</a>
+
+</div>
+</div>
+<div id="zh-question-title" data-editable="false">
+<h2 class="zm-item-title">
+
+<span class="zm-editable-content">如何理解和熟练运用js中的call及apply？</span>
+
+</h2>
+</div>
+<div id="zh-question-detail" class="zm-item-rich-text" data-resourceid="295899" data-action="/question/detail">
+
+<div class="zm-editable-content">有时候看一两个关于apply或call的小例子，感觉能够理解一点点<br>但是下次碰到又要纠结半天才能转过弯来～而且不知道怎么应用到实际工作当中去～</div>
+
+
+</div>
+<div class="zm-item-meta zm-item-comment-el clearfix" id="zh-question-meta-wrap" data-za-module="QuestionItem">
+<div class="zm-meta-panel goog-scrollfloater">
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="toggle-comment meta-item">
+<i class="z-icon-comment"></i>1 条评论
+</a>
+<a href="http://www.zhihu.com/question/20289071#" name="share" class="share meta-item goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+</div>
+<div class="panel-container">
+
+<div class="question-invite-panel"></div><div class="zm-comment-box" style="display: none;"></div></div>
+</div>
+
+
+<div class="zh-answers-title clearfix">
+
+<div id="zh-answers-filter" class="Sorter">
+
+<span class="lbl">默认排序</span>
+<a class="lbl" href="http://www.zhihu.com/question/20289071?sort=created">按时间排序</a>
+
+<i class="zg-icon zg-icon-double-arrow"></i>
+</div>
+
+<h3 data-num="24" id="zh-question-answer-num">24 个回答</h3>
+</div>
+
+<div id="zh-question-answer-wrap" data-pagesize="10" class="zh-question-answer-wrapper navigable" data-widget="navigable" data-navigable-options="{&quot;items&quot;: &quot;&gt;.zm-item-answer&quot;}" data-init="{&quot;params&quot;: {&quot;url_token&quot;: 20289071, &quot;pagesize&quot;: 10, &quot;offset&quot;: 0}, &quot;nodename&quot;: &quot;QuestionAnswerListV2&quot;}"><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemprop="topAnswer" itemscope="" itemtype="http://schema.org/Answer" data-aid="978829" data-atoken="14644278" data-collapsed="0" data-created="1339575168" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/14644278">
+<meta itemprop="answer-id" content="978829">
+<meta itemprop="answer-url-token" content="14644278">
+<a class="zg-anchor-hidden" name="answer-978829"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">246</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/rdtriny" target="_blank" data-hovercard="p$t$rdtriny"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/da8e974dc_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$rdtriny" target="_blank" href="http://www.zhihu.com/people/rdtriny">杨志</a></span><span title="我的项目：http://mqc.aliyun.com" class="bio">
+我的项目：<a href="http://link.zhihu.com/?target=http%3A//mqc.aliyun.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">mqc.aliyun.com</span><span class="invisible"></span><i class="icon-external"></i></a>
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="246" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">246</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="杨志" data-entry-url="/question/20289071/answer/14644278">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+LZ要先明白存在call和apply的原因，才能记得牢一点： 在javascript OOP中，我们经常会这样定义： function cat(){ } cat.prototype={ food:"fish", say: function(){ alert("I love "+this.food); } } var blackCat = new cat; blackCat.say(); 但是如果我…
+
+<a href="http://www.zhihu.com/question/20289071/answer/14644278" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+LZ要先明白存在call和apply的原因，才能记得牢一点：<br>    在javascript OOP中，我们经常会这样定义：     <blockquote>function cat(){<br>}<br>cat.prototype={<br>     food:"fish",<br>     say: function(){<br>           alert("I love "+this.food);<br>     }<br>}<br><br><br>var blackCat = new cat;<br>blackCat.say();</blockquote> 但是如果我们有一个对象whiteDog = {food:"bone"},我们不想对它重新定义say方法，那么我们可以通过call或apply用blackCat的say方法：blackCat.say.call(whiteDog);<br><br>所以，可以看出call和apply是为了动态改变this而出现的，当一个object没有某个方法，但是其他的有，我们可以借助call或apply用其它对象的方法来操作。<br><br>用的比较多的，通过document.getElementsByTagName选择的dom 节点是一种类似array的array。它不能应用Array下的push,pop等方法。我们可以通过：<br>var domNodes =  Array.prototype.slice.call(document.getElementsByTagName("*"));<br>这样domNodes就可以应用Array下的所有方法了。<br><br>其他的就不提了，讲多了反而迷惑。
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="978829-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/14644278">发布于 2012-06-13</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>30 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="1019529" data-atoken="14745394" data-collapsed="0" data-created="1340877940" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/14745394">
+<meta itemprop="answer-id" content="1019529">
+<meta itemprop="answer-url-token" content="14745394">
+<a class="zg-anchor-hidden" name="answer-1019529"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">135</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/zeke" target="_blank" data-hovercard="p$t$zeke"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/a5d7e72f884df3030ec2e7958188cae7_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$zeke" target="_blank" href="http://www.zhihu.com/people/zeke">赵望野</a></span><span title="会做一点前端" class="bio">
+会做一点前端
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="135" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">135</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="赵望野" data-entry-url="/question/20289071/answer/14745394">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。 二者的作用完全一样，只是…
+
+<a href="http://www.zhihu.com/question/20289071/answer/14745394" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。<br><br>二者的作用完全一样，只是接受参数的方式不太一样。例如，有一个函数 func1 定义如下：<br><blockquote>var func1 = function(arg1, arg2) {};</blockquote>就可以通过 func1.call(this, arg1, arg2); 或者 func1.apply(this, [arg1, arg2]); 来调用。其中 this 是你想指定的上下文，他可以任何一个 JavaScript 对象(JavaScript 中一切皆对象)，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。<br><br>JavaScript 中，某个函数的参数数量是不固定的，因此要说适用条件的话，当你的参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个数组来便利所有的参数。
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="1019529-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/14745394">发布于 2012-06-28</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>4 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="1011419" data-atoken="14725446" data-collapsed="0" data-created="1340642629" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/14725446">
+<meta itemprop="answer-id" content="1011419">
+<meta itemprop="answer-url-token" content="14725446">
+<a class="zg-anchor-hidden" name="answer-1011419"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">18</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/krazy-86" target="_blank" data-hovercard="p$t$krazy-86"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/8f4615825_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$krazy-86" target="_blank" href="http://www.zhihu.com/people/krazy-86">krazy</a></span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="18" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">18</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="krazy" data-entry-url="/question/20289071/answer/14725446">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+函数调用的三种方式: obj.myFunc(); myFunc.call(obj,arg); myFunc.apply(obj,[arg1,arg2..]);
+
+<a href="http://www.zhihu.com/question/20289071/answer/14725446" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+函数调用的三种方式:<br>obj.myFunc();<br>myFunc.call(obj,arg);<br>myFunc.apply(obj,[arg1,arg2..]);
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="1011419-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/14725446">发布于 2012-06-26</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>6 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="1023574" data-atoken="14754911" data-collapsed="0" data-created="1340985843" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/14754911">
+<meta itemprop="answer-id" content="1023574">
+<meta itemprop="answer-url-token" content="14754911">
+<a class="zg-anchor-hidden" name="answer-1023574"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">6</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="javascript:;"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/da8e974dc_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+<span class="name">知乎用户</span></span><span title="经济学家" class="bio">
+经济学家
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="6" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">6</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="mnnnm" data-entry-url="/question/20289071/answer/14754911">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+apply: <a href="http://link.zhihu.com/?target=https%3A//developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/Apply" class=" wrap external" target="_blank" rel="nofollow noreferrer">Function.prototype.apply<i class="icon-external"></i></a> call:<a href="http://link.zhihu.com/?target=https%3A//developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/Call" class=" wrap external" target="_blank" rel="nofollow noreferrer">Function.prototype.call<i class="icon-external"></i></a> <b>NOTE:</b> While the syntax of this function is almost identical to that of call(), the fundamental difference is that call() accepts an argument list, while apply() accepts a single…
+
+<a href="http://www.zhihu.com/question/20289071/answer/14754911" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+apply: <a href="http://link.zhihu.com/?target=https%3A//developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/Apply" class=" wrap external" target="_blank" rel="nofollow noreferrer">Function.prototype.apply<i class="icon-external"></i></a><br>call:<a href="http://link.zhihu.com/?target=https%3A//developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/Call" class=" wrap external" target="_blank" rel="nofollow noreferrer">Function.prototype.call<i class="icon-external"></i></a><br><br><b>NOTE:</b> While the syntax of this function is almost identical to that of call(), the fundamental difference is that call() accepts an argument list, while apply() accepts a single array of arguments. <br>call 和 apply 的区别只在于这两个函数接受的参数形式不同。<br><br>Example: <br>判断一个变量是不是Array<ol><li>var a = {};<br></li><li>var b = []<br></li><li>Object.prototype.toString.call(a);      // 输出为： "[object Object]" <br></li><li>Object.prototype.toString.call(a);      // 输出为： "[object Array]" </li></ol>update: 2013.5.4<br>使用call和apply方法，可以改变对象方法的运行环境，例如，有一个类Man<br><br><div class="highlight"><pre><code class="language-js"><span class="kd">function</span> <span class="nx">Man</span><span class="p">()</span> <span class="p">{}</span>
+<span class="nx">Man</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">valet</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">wakeUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">valet</span> <span class="o">+</span> <span class="s2">"? Some breakfase, please."</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">//get "undefined? Some breakfast, please</span>
+<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'morning'</span><span class="p">);</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span>
+    <span class="s2">"click"</span><span class="p">,</span>
+    <span class="nx">wooster</span><span class="p">.</span><span class="nx">wakeUp</span><span class="p">,</span>
+    <span class="kc">false</span>
+<span class="p">);</span>
+
+<span class="c1">//使用apply来改变 wakeUp 的上下文环境，即 wakeUp 中的this</span>
+<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'morning2'</span><span class="p">);</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span>
+    <span class="s2">"click"</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">Man</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">wakeUp</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">wooster</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="kc">false</span>
+<span class="p">);</span>
+</code></pre></div><br>ps：以上代码例子来自与《深入Ajax架构与最佳实践》3.1 对象与事件触发
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="1023574-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" data-tooltip="s$t$发布于 2012-06-30" target="_blank" href="http://www.zhihu.com/question/20289071/answer/14754911">编辑于 2013-05-06</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+<button class="item-collapse js-collapse"><i class="z-icon-fold"></i>收起</button></div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="14910494" data-atoken="48779872" data-collapsed="0" data-created="1432427315" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/48779872">
+<meta itemprop="answer-id" content="14910494">
+<meta itemprop="answer-url-token" content="48779872">
+<a class="zg-anchor-hidden" name="answer-14910494"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">0</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/itlr" target="_blank" data-hovercard="p$t$itlr"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/7ba7ab10a562016b6ec063a6d43c1587_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$itlr" target="_blank" href="http://www.zhihu.com/people/itlr">itlr</a></span><span title="jump.im/i6" class="bio">
+<a href="http://link.zhihu.com/?target=http%3A//jump.im/i6" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">jump.im/i6</span><span class="invisible"></span><i class="icon-external"></i></a>
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0" data-za-module="VoteInfo">
+
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="itlr" data-entry-url="/question/20289071/answer/48779872">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+JS functions are <b>objects </b>JS函数是对象，没什么特别的... that have .call and .apply <b>methods </b>这些对象只不过有call和apply两个特别的方法而已... both take an object as the first <b>argument </b>call和apply的第一个参数是任一个对象... which specifies th…
+
+<a href="http://www.zhihu.com/question/20289071/answer/48779872" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+<ol><li>JS functions are <b>objects </b>JS函数是对象，没什么特别的</li><li>... that have .call and .apply <b>methods </b>这些对象只不过有call和apply两个特别的方法而已</li><li>... both take an object as the first <b>argument </b>call和apply的第一个参数是任一个对象</li><li>... which specifies the target where the function runs against 既函数的执行（作用）目标</li></ol><div class="highlight"><pre><code class="language-text">function fn (a) { ... }
+var obj = { ... }
+// 在obj上执行fn
+fn.call(obj, ...)
+fn.apply(obj, ....)
+</code></pre></div>
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="14910494-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" data-tooltip="s$t$发布于 2015-05-24" target="_blank" href="http://www.zhihu.com/question/20289071/answer/48779872">编辑于 2015-05-24</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="2">
+<meta name="disableCopyAvatar" content="https://pic4.zhimg.com/7ba7ab10a562016b6ec063a6d43c1587_s.jpg">
+
+<span class="zg-bull">•</span>
+
+
+<a href="http://www.zhihu.com/copyright/apply?answer=48779872" target="_blank" class="meta-item copyright">申请转载</a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="27785454" data-atoken="80892838" data-collapsed="0" data-created="1452421800" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/80892838">
+<meta itemprop="answer-id" content="27785454">
+<meta itemprop="answer-url-token" content="80892838">
+<a class="zg-anchor-hidden" name="answer-27785454"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">9</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="javascript:;"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/da8e974dc_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+<span class="name">知乎用户</span></span><span title="http://52fhy.cnblogs.com/" class="bio">
+<a href="http://link.zhihu.com/?target=http%3A//52fhy.cnblogs.com/" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">52fhy.cnblogs.com/</span><span class="invisible"></span><i class="icon-external"></i></a>
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="9" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">9</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="余建材" data-entry-url="/question/20289071/answer/80892838">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+obj.call(thisObj, arg1, arg2, ...);
+obj.apply(thisObj, [arg1, arg2, ...]);
+两者作用一致，都是把obj(即this)绑定到thisObj，这时候thisObj具备了obj的属性和方法。或者说thisObj『继承』了obj的属性和方法。唯一区别是apply接受的是数组参数，call接受…
+
+<a href="http://www.zhihu.com/question/20289071/answer/80892838" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+<div class="highlight"><pre><code class="language-text">obj.call(thisObj, arg1, arg2, ...);
+obj.apply(thisObj, [arg1, arg2, ...]);
+</code></pre></div><p>两者作用一致，都是把obj(即this)绑定到thisObj，这时候thisObj具备了obj的属性和方法。或者说thisObj『继承』了obj的属性和方法。</p><p>唯一区别是apply接受的是数组参数，call接受的是连续参数。</p><br><div class="highlight"><pre><code class="language-text">function add(j, k){
+    return j+k;
+}
+
+function sub(j, k){
+    return j-k;
+}
+</code></pre></div><p>我们在控制台运行：<br></p><br><div class="highlight"><pre><code class="language-text">add(5,3); //8
+add.call(sub, 5, 3); //8
+add.apply(sub, [5, 3]); //8
+
+sub(5, 3); //2
+sub.call(add, 5, 3); //2
+sub.apply(add, [5, 3]); //2
+</code></pre></div><p>通过call和apply，我们可以实现对象继承。示例：<br></p><br><div class="highlight"><pre><code class="language-text">var Parent = function(){
+    this.name = "yjc";
+    this.age = 22;
+}
+
+var child = {};
+
+console.log(child);//Object {} ,空对象
+
+Parent.call(child);
+
+console.log(child); //Object {name: "yjc", age: 22}
+</code></pre></div><p>以上实现了对象的继承。</p><br><p>更多阅读：js笔记——call,apply,bind使用笔记 - 飞鸿影~ - 博客园</p><p><a href="http://link.zhihu.com/?target=http%3A//www.cnblogs.com/52fhy/p/5118877.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">js笔记——call,apply,bind使用笔记<i class="icon-external"></i></a></p>
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="27785454-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/80892838">发布于 2016-01-10</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+<button class="item-collapse js-collapse"><i class="z-icon-fold"></i>收起</button></div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="4678839" data-atoken="23625411" data-collapsed="0" data-created="1395312649" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/23625411">
+<meta itemprop="answer-id" content="4678839">
+<meta itemprop="answer-url-token" content="23625411">
+<a class="zg-anchor-hidden" name="answer-4678839"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">4</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="javascript:;"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/da8e974dc_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+<span class="name">知乎用户</span></span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="4" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">4</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="可口不乐" data-entry-url="/question/20289071/answer/23625411">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+我也是刚刚理解，你首先要知道call和apply是Function的方法，他的第一个参数是this，第二个是Function的参数。比如你的方法里写了this,普通调用这个方法这个this可能是window。而如果你用了call，第一个参数写啥，里面的this就是啥
+
+<a href="http://www.zhihu.com/question/20289071/answer/23625411" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+我也是刚刚理解，你首先要知道call和apply是Function的方法，他的第一个参数是this，第二个是Function的参数。比如你的方法里写了this,普通调用这个方法这个this可能是window。而如果你用了call，第一个参数写啥，里面的this就是啥
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="4678839-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/23625411">发布于 2014-03-20</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>4 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="20446528" data-atoken="62582198" data-collapsed="0" data-created="1441550806" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/62582198">
+<meta itemprop="answer-id" content="20446528">
+<meta itemprop="answer-url-token" content="62582198">
+<a class="zg-anchor-hidden" name="answer-20446528"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">12</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/yangbai" target="_blank" data-hovercard="p$t$yangbai"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/da8e974dc_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$yangbai" target="_blank" href="http://www.zhihu.com/people/yangbai">杨佰</a></span><span title="如果非要用一种东西来记录我的生命历程，我会用朋友！" class="bio">
+如果非要用一种东西来记录我的生命历程，…
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="12" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">12</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="杨佰" data-entry-url="/question/20289071/answer/62582198">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+其实就是动态的改变this了，下面例子就说明了。。。
+
+function add(a, b){console.dir(this);}
+
+function sub(a, b){console.dir(this);}
+
+add(1,2);
+"Window"
+
+sub(1,2);
+"Window"
+
+add.call(sub, 1, 2);
+"sub(a, b)"
+
+sub.apply(add, [1, 2]);
+"add(a, b)"
+
+
+<a href="http://www.zhihu.com/question/20289071/answer/62582198" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+<div class="highlight"><pre><code class="language-js"><span class="nx">其实就是动态的改变this了</span><span class="err">，</span><span class="nx">下面例子就说明了</span><span class="err">。。。</span>
+
+<span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="k">this</span><span class="p">);}</span>
+
+<span class="kd">function</span> <span class="nx">sub</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="k">this</span><span class="p">);}</span>
+
+<span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="s2">"Window"</span>
+
+<span class="nx">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="s2">"Window"</span>
+
+<span class="nx">add</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">sub</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="s2">"sub(a, b)"</span>
+
+<span class="nx">sub</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">add</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
+<span class="s2">"add(a, b)"</span>
+</code></pre></div>
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="20446528-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" data-tooltip="s$t$发布于 2015-09-06" target="_blank" href="http://www.zhihu.com/question/20289071/answer/62582198">编辑于 2015-09-06</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="14908687" data-atoken="48775432" data-collapsed="0" data-created="1432415361" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/48775432">
+<meta itemprop="answer-id" content="14908687">
+<meta itemprop="answer-url-token" content="48775432">
+<a class="zg-anchor-hidden" name="answer-14908687"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">34</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/stayfool" target="_blank" data-hovercard="p$t$stayfool"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/42df36a50292dcb5ddf6991542d132cd_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$stayfool" target="_blank" href="http://www.zhihu.com/people/stayfool">薯条半价</a></span><span title="互联网 前端工程师" class="bio">
+互联网 前端工程师
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="34" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">34</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="薯条半价" data-entry-url="/question/20289071/answer/48775432">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+call和apply可以用来重新定义函数的执行环境，也就是this的指向。通过一个操作DOM的例子来理解。function changeStyle(attr, value){
+ this.style[attr] = value;
+}
+var box = document.getElementById('box');
+window.changeStyle.call(box, "height", "20…
+
+<a href="http://www.zhihu.com/question/20289071/answer/48775432" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+<p>call和apply可以用来重新定义函数的执行环境，也就是this的指向。通过一个操作DOM的例子来理解。</p><div class="highlight"><pre><code class="language-text">function changeStyle(attr, value){
+    this.style[attr] = value;
+}
+var box = document.getElementById('box');
+window.changeStyle.call(box, "height", "200px");
+</code></pre></div><p>call中的第一个参数用于指定将要调用此函数的对象，在这里，changeStyle函数将被box对象调用，this指向了box对象，如果不用call的话，程序报错，因为window对象中没有style属性。<br>apply的用法:</p><div class="highlight"><pre><code class="language-text">window.changeStyle.apply(box, ['height', '200px']);
+</code></pre></div>​=========更新：2016年10月08日========<br>如果call或apply的第一参数是null的话， this指向window
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="14908687-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" data-tooltip="s$t$发布于 2015-05-24" target="_blank" href="http://www.zhihu.com/question/20289071/answer/48775432">编辑于 2016-10-08</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>14 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="28713033" data-atoken="83207790" data-collapsed="0" data-created="1453691630" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/83207790">
+<meta itemprop="answer-id" content="28713033">
+<meta itemprop="answer-url-token" content="83207790">
+<a class="zg-anchor-hidden" name="answer-28713033"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">19</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/be5invis" target="_blank" data-hovercard="p$t$be5invis"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/ad29fb159725b4d7e904a4c876e0c120_s.png" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$be5invis" target="_blank" href="http://www.zhihu.com/people/be5invis">Belleve</a><span class="icon icon-badge-best_answerer icon-badge" data-tooltip="s$b$优秀回答者"></span></span><span class="badge-summary"><a href="http://www.zhihu.com/people/be5invis#hilightbadge" target="_blank">编程、JavaScript话题优秀回答者</a></span>
+
+
+
+<span title="炼金术士" class="bio">
+炼金术士
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="19" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">19</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="Belleve" data-entry-url="/question/20289071/answer/83207790">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+你首先要明白 this 是个参数，然后就好理解了：普通的函数调用隐式传入 this，call 和 apply 可以显式指定它。 简单方法调用的小步语义 \mathfrak{M}(o[m](..arglist), e, s, k, t)\rightarrow\mathfrak{M}(o, e, s, \#[m](..arglist)&gt;&gt;=k, t) \mathfrak{M}…
+
+<a href="http://www.zhihu.com/question/20289071/answer/83207790" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+你首先要明白 this 是个参数，然后就好理解了：普通的函数调用隐式传入 this，call 和 apply 可以显式指定它。<br><br>简单方法调用的小步语义<br><img src="http://zhihu.com/equation?tex=%5Cmathfrak%7BM%7D%28o%5Bm%5D%28..arglist%29%2C+e%2C+s%2C+k%2C+t%29%5Crightarrow%5Cmathfrak%7BM%7D%28o%2C+e%2C+s%2C+%5C%23%5Bm%5D%28..arglist%29%3E%3E%3Dk%2C+t%29" alt="\mathfrak{M}(o[m](..arglist), e, s, k, t)\rightarrow\mathfrak{M}(o, e, s, \#[m](..arglist)&gt;&gt;=k, t)" eeimg="1"><br><img src="http://zhihu.com/equation?tex=%5Cmathfrak%7BM%7D%28%5Cmathrm%7BJust%7D%5C+%5Chat+o%2C+e%2C+s%2C+%5C%23%5Bm%5D%28..arglist%29%3E%3E%3Dk%2C+t%29%5Crightarrow%5Cmathfrak%7BM%7D%28m%2C+e%2C+s%2C+%5Chat+o%5B%5C%23%5D%28..args%29%3E%3E%3Dk%2Ct%29" alt="\mathfrak{M}(\mathrm{Just}\ \hat o, e, s, \#[m](..arglist)&gt;&gt;=k, t)\rightarrow\mathfrak{M}(m, e, s, \hat o[\#](..args)&gt;&gt;=k,t)" eeimg="1"><br>......<br><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/equation" alt="\mathfrak{M}(\mathrm{Just}\ ..\hat a,e,s,\hat o[\hat m](\#)&gt;&gt;k,t)\rightarrow\mathfrak{M}((\mathrm{Part}\ \hat o\ \hat m), e, s, (\mathrm{Invoke}\ \#\ \hat o\ ..\hat a\ k\ t)&gt;&gt;=k, t)" eeimg="1">
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="28713033-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" data-tooltip="s$t$发布于 2016-01-25" target="_blank" href="http://www.zhihu.com/question/20289071/answer/83207790">编辑于 2016-01-25</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>6 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemprop="topAnswer" itemscope="" itemtype="http://schema.org/Answer" data-aid="28751147" data-atoken="83302827" data-collapsed="0" data-created="1453731071" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/83302827">
+<meta itemprop="answer-id" content="28751147">
+<meta itemprop="answer-url-token" content="83302827">
+<a class="zg-anchor-hidden" name="answer-28751147"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">2</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/li-hua-qiao-97" target="_blank" data-hovercard="p$t$li-hua-qiao-97"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/f71fcdc2555836c3ce7f2b8559c8660c_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$li-hua-qiao-97" target="_blank" href="http://www.zhihu.com/people/li-hua-qiao-97">李华桥</a></span><span title="前端攻城狮" class="bio">
+前端攻城狮
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="2" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">2</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="李华桥" data-entry-url="/question/20289071/answer/83302827">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+我觉得上下文都无所谓 能够自由传递不确定的参数到你希望调用的函数 这才是最好用的。
+
+<a href="http://www.zhihu.com/question/20289071/answer/83302827" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+我觉得上下文都无所谓 能够自由传递不确定的参数到你希望调用的函数 这才是最好用的。
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="28751147-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/83302827">发布于 2016-01-25</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="6161267" data-atoken="27085077" data-collapsed="0" data-created="1403333877" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/27085077">
+<meta itemprop="answer-id" content="6161267">
+<meta itemprop="answer-url-token" content="27085077">
+<a class="zg-anchor-hidden" name="answer-6161267"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">1</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/imisko" target="_blank" data-hovercard="p$t$imisko"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/80a0f6333_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$imisko" target="_blank" href="http://www.zhihu.com/people/imisko">MiskoLee</a></span><span title="时光正是这样，现在措手不及的正是当初游刃有余的你" class="bio">
+时光正是这样，现在措手不及的正是当初游…
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="1" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">1</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="MiskoLee" data-entry-url="/question/20289071/answer/27085077">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+忘掉function这个关键词，自然而然就懂了
+
+<a href="http://www.zhihu.com/question/20289071/answer/27085077" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+忘掉function这个关键词，自然而然就懂了
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="6161267-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/27085077">发布于 2014-06-21</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="29640639" data-atoken="85521895" data-collapsed="0" data-created="1455018511" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/85521895">
+<meta itemprop="answer-id" content="29640639">
+<meta itemprop="answer-url-token" content="85521895">
+<a class="zg-anchor-hidden" name="answer-29640639"></a>
+
+
+<div style="visibility: hidden; position: static; top: auto; left: auto; display: block; float: left; margin: 0px 0px 0px -48px; width: 38px; height: 73px;"></div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/mei-xue-xiang" target="_blank" data-hovercard="p$t$mei-xue-xiang"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/ddc9d9ec8d3289a2ec04bf77234b5674_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$mei-xue-xiang" target="_blank" href="http://www.zhihu.com/people/mei-xue-xiang">梅雪香</a></span><span title="WEB前端工程师" class="bio">
+WEB前端工程师
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="10" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">10</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="梅雪香" data-entry-url="/question/20289071/answer/85521895">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+你会打DOTA吗？你知道妖妖的默认改键吗？每个英雄的技能快捷键都是CEWD，但不同的英雄放出的是不同的技能，这就是执行上下文（this、调用对象）的不同，使同样的方法得到不同的运行结果。 ********** 以上可有可无 ************ 举个更常规的例子吧，比如人…
+
+<a href="http://www.zhihu.com/question/20289071/answer/85521895" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+你会打DOTA吗？你知道妖妖的默认改键吗？每个英雄的技能快捷键都是CEWD，但不同的英雄放出的是不同的技能，这就是执行上下文（this、调用对象）的不同，使同样的方法得到不同的运行结果。<br>********** 以上可有可无 ************<br>举个更常规的例子吧，比如人类，当被问到：你爸爸叫什么名字的时候，每个人都会调用一个返回父亲名字的方法<br><div class="highlight"><pre><code class="language-js"><span class="kd">function</span> <span class="nx">fatherName</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">father</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>你直接调用它会出事，因为这时候的this是玉皇大帝，系统抛出异常说：玉帝的爸爸是undefined，它没有名字。但这不代表fatherName这个函数没有存在的意义，要看是谁来调用它。比如有一个人：<br><div class="highlight"><pre><code class="language-js"><span class="kd">var</span> <span class="nx">yuqian</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">father</span><span class="o">:</span> <span class="p">{</span>
+       <span class="nx">name</span><span class="o">:</span> <span class="s1">'guodegang'</span>
+    <span class="p">},</span>
+    <span class="nx">fatherName</span><span class="o">:</span> <span class="nx">fatherName</span>
+<span class="p">};</span>
+<span class="nx">yuqian</span><span class="p">.</span><span class="nx">fatherName</span><span class="p">();</span> <span class="c1">// guodegang</span>
+</code></pre></div>还有另一个人：<br><div class="highlight"><pre><code class="language-js"><span class="kd">var</span> <span class="nx">sunwukong</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">father</span><span class="o">:</span> <span class="p">{</span>
+       <span class="nx">name</span><span class="o">:</span> <span class="s1">'stone'</span>
+    <span class="p">},</span>
+    <span class="nx">fatherName</span><span class="o">:</span> <span class="nx">fatherName</span>
+<span class="p">};</span>
+<span class="nx">sunwukong</span><span class="p">.</span><span class="nx">fatherName</span><span class="p">();</span> <span class="c1">// stone</span>
+</code></pre></div>其实，中国还有很多人，写那……么多fatherName: fatherName 好烦呐<br>其实你可以这样：<br><div class="highlight"><pre><code class="language-js"><span class="kd">var</span> <span class="nx">yuqian</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">father</span><span class="o">:</span> <span class="p">{</span>
+       <span class="nx">name</span><span class="o">:</span> <span class="s1">'guodegang'</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">sunwukong</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">father</span><span class="o">:</span> <span class="p">{</span>
+       <span class="nx">name</span><span class="o">:</span> <span class="s1">'stone'</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="p">[</span><span class="nx">yuqian</span><span class="p">,</span><span class="nx">sunwukong</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">who</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">fatherName</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">who</span><span class="p">);</span>
+<span class="p">});</span> <span class="c1">//["guodegang", "stone"]</span>
+</code></pre></div>注意到了吧，call(apply同理)改变的是方法的执行上下文（this、调用对象）<br>不是每个人被问到爸爸名字的时候，都这么规规矩矩的回答，有人会这样<br><div class="highlight"><pre><code class="language-js"><span class="kd">var</span> <span class="nx">zhangfei</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">father</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'你管得着么'</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">guanyu</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">father</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">'你猜，你猜，你猜猜猜'</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="p">[</span><span class="nx">zhangfei</span><span class="p">,</span> <span class="nx">guanyu</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">who</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">fatherName</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">who</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="o">===</span> <span class="s2">"[object Function]"</span> <span class="o">?</span> <span class="nx">name</span><span class="p">()</span> <span class="o">:</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">});</span> <span class="c1">//["你管得着么", "你猜，你猜，你猜猜猜"]</span>
+</code></pre></div>那么，问题来了，内部没有使用this的方法，call、apply对它的执行有影响吗？
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="29640639-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/85521895">发布于 2016-02-09</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>5 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+<button class="item-collapse js-collapse"><i class="z-icon-fold"></i>收起</button></div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="22681156" data-atoken="68155844" data-collapsed="0" data-created="1445076029" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/68155844">
+<meta itemprop="answer-id" content="22681156">
+<meta itemprop="answer-url-token" content="68155844">
+<a class="zg-anchor-hidden" name="answer-22681156"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">8</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/wannameetu" target="_blank" data-hovercard="p$t$wannameetu"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/85045802ff609c381101917c7da68338_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$wannameetu" target="_blank" href="http://www.zhihu.com/people/wannameetu">遇见</a></span><span title="公众号: isreact" class="bio">
+公众号: isreact
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="8" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">8</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="遇见" data-entry-url="/question/20289071/answer/68155844">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+用法和含义 楼上已经讲的非常准确了，通俗一点就是改变this的指向，高级一点的解释就是改变执行上下文的顺序。如果你愿意更加深入的了解，请搜索executed context 直白一点的解释就是 obj 夺舍 fn，拥有了执行fn方法的能力，并且this是指向obj的. fn.call(o…
+
+<a href="http://www.zhihu.com/question/20289071/answer/68155844" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+用法和含义 楼上已经讲的非常准确了，通俗一点就是改变this的指向，高级一点的解释就是改变执行上下文的顺序。如果你愿意更加深入的了解，请搜索executed context<br><br>直白一点的解释就是 obj 夺舍 fn，拥有了执行fn方法的能力，并且this是指向obj的.<br><div class="highlight"><pre><code class="language-js"><span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+</code></pre></div><br>下面是几个实际应用的简单的例子 ，点击链接可查看完整代码<br>1. arguments 转换为数组 <a href="http://link.zhihu.com/?target=https%3A//github.com/yangbo5207/fantsy/blob/master/call-apply/example_0.js" class=" wrap external" target="_blank" rel="nofollow noreferrer">fantsy/example_0.js at master · yangbo5207/fantsy · GitHub<i class="icon-external"></i></a><br><div class="highlight"><pre><code class="language-js"><span class="c1">// 返回的是数组，但是arguments本身保持不变</span>
+<span class="kd">var</span> <span class="nx">arg</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+
+<span class="c1">//[].slice.call(document.getElementsByTagName('li'));</span>
+</code></pre></div><br>2. 借用别人的方法 <a href="http://link.zhihu.com/?target=https%3A//github.com/yangbo5207/fantsy/blob/master/call-apply/example_1.js" class=" wrap external" target="_blank" rel="nofollow noreferrer">fantsy/example_1.js at master · yangbo5207/fantsy · GitHub<i class="icon-external"></i></a><br><div class="highlight"><pre><code class="language-js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">'joker'</span><span class="p">,</span>
+    <span class="nx">showName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">'rose'</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">showName</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bar</span><span class="p">);</span>
+</code></pre></div><br>3. 实现继承 <a href="http://link.zhihu.com/?target=https%3A//github.com/yangbo5207/fantsy/blob/master/call-apply/example_2.js" class=" wrap external" target="_blank" rel="nofollow noreferrer">fantsy/example_2.js at master · yangbo5207/fantsy · GitHub<i class="icon-external"></i></a><br><div class="highlight"><pre><code class="language-js"><span class="kd">var</span> <span class="nx">Student</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">high</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// use call</span>
+    <span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">high</span> <span class="o">=</span> <span class="nx">high</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><br>4. 封装对象时保证this的指向 <a href="http://link.zhihu.com/?target=https%3A//github.com/yangbo5207/fantsy/blob/master/call-apply/example_3.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">fantsy/example_3.html at master · yangbo5207/fantsy · GitHub<i class="icon-external"></i></a><br><div class="highlight"><pre><code class="language-js"><span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+<span class="nx">_this</span><span class="p">.</span><span class="nx">$box</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'mousedown'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">_this</span><span class="p">.</span><span class="nx">fndown</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">_this</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre></div>
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="22681156-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/68155844">发布于 2015-10-17</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+<div style="display: block; position: absolute; top: 5px; right: 0px; bottom: auto; left: auto; float: none; margin: 0px; visibility: hidden; width: 51px; height: 23px;"></div><button class="item-collapse js-collapse is-sticky" style="left: 775.5px; top: auto; bottom: 12px;"><i class="sprite-global-icon-fold-white"></i>收起</button></div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="32744761" data-atoken="93261557" data-collapsed="0" data-created="1459505555" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/93261557">
+<meta itemprop="answer-id" content="32744761">
+<meta itemprop="answer-url-token" content="93261557">
+<a class="zg-anchor-hidden" name="answer-32744761"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">5</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/coocss" target="_blank" data-hovercard="p$t$coocss"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/98bc372325a0a806194a6bed2aaffe6f_s.png" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$coocss" target="_blank" href="http://www.zhihu.com/people/coocss">王佳欣</a></span><span title="前端狗" class="bio">
+前端狗
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="5" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">5</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="王佳欣" data-entry-url="/question/20289071/answer/93261557">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+用实例来讲；一半什么场合用到bind、call、apply呢？ 【一个对象 A】的方法被【另一个对象 B】【引用】的时候（请注意 <b>引用 </b>的意思，区分<b>调用 </b>）；【对象A】的方法内的this作用域就不指向【对象A】了，这个时候你再用this.XX项调用【对象A】的某个属性就会…
+
+<a href="http://www.zhihu.com/question/20289071/answer/93261557" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+用实例来讲；一半什么场合用到bind、call、apply呢？<br>【一个对象 A】的方法被【另一个对象 B】【引用】的时候（请注意 <b>引用 </b>的意思，区分<b>调用 </b>）；【对象A】的方法内的this作用域就不指向【对象A】了，这个时候你再用this.XX项调用【对象A】的某个属性就会发生错误。<br><br>举个例子吧；<br><div class="highlight"><pre><code class="language-text">var aHello = {
+    name : "hello",
+    showName : function(){
+        console.log(this.name);
+        //console.log(this.tagName);
+    }
+}
+
+document.querySelector('a').onclick = aHello.showName;
+</code></pre></div><br>这个时候因为【对象aHello】的方法showName被【对象document.querySelector('a')】<b>引用</b>，所以showName内的this就不指向【aHello】了，指向【对象document.querySelector('a')】，可以去掉注释进行验证。<br><br>但是我们的需求是，点击a的时候就显示aHello的名称。<br><br>这个时候该怎么做呢？<br><br>方法一：在onclick的时候改用匿名函数，匿名函数内再<b>调用 【</b>对象aHello】的方法；<br>如：<br><div class="highlight"><pre><code class="language-text">var aHello = {
+    name : "hello",
+    showName : function(){
+        console.log(this.name);
+    }
+}
+
+document.querySelector('a').onclick = function(){
+    aHello.showName();
+}
+</code></pre></div>ok！开心的解决了；<br><br>然而，是不是觉得太怂了。我们来衍生一下第二种方法，然后再说bind和call和apply的区别；<br><br>方法二：因为<b>引用</b>， onclick改变了【对象aHello】showName内this的指向。所以我们必须在【<b>引用】</b>的时候对showName方法进行重新绑定新的指向；<br>如：<br><br><div class="highlight"><pre><code class="language-text">var aHello = {
+    name : "hello",
+    showName : function(){
+        console.log(this.name);
+    }
+}
+
+document.querySelector('a').onclick = aHello.showName.bind(aHello);
+</code></pre></div><br>恩！高大上，不用写太多代码。<br><br>接下来讲一下bind和apply、call的区别;<br>首先这些方法多属于【原型prototype】的方法。<br><br>题主的老师 可能没听过【引用】与【调用】所以用了一个临时与永久的概念来讲解，做技术，最好不要听老师的......<br><br><br><br>还用前面例子来讲（随便举的主要区分区别，大家别挑刺）；<br><div class="highlight"><pre><code class="language-text">var aHello = {
+    name : "hello",
+    setYourAge : function(name,age){
+       console.log(name);
+       console.log(age);
+    }
+}
+
+document.querySelector('a').onclick = aHello.setYourAge.call(aHello,'王佳欣',25);
+</code></pre></div><br>这个时候你可以看到打开页面，浏览器控制台就会马上输出 “王佳欣”，“25”；<br>然后，你再点击的时候，根本不会，再输出的；ok，这就是 【调用】含义；<br>call和apply是调用对象方法的意思；也就是说下面的3句代码其实实现是一样的；<br><div class="highlight"><pre><code class="language-text">aHello.setYourAge.call(aHello,'王佳欣',25);
+aHello.setYourAge.apply(aHello,['王佳欣',25]);
+aHello.setYourAge('王佳欣',25);
+</code></pre></div>既然可以直接调用干嘛还要call、apply方法呢，我先说一下<b>call、apply 和bind的区别</b>吧；<br><br><div class="highlight"><pre><code class="language-text">var aHello = {
+    name : "hello",
+    setYourAge : function(name,age){
+       console.log(name);
+       console.log(age);
+    }
+}
+
+document.querySelector('a').onclick = aHello.setYourAge.bind(aHello,'王佳欣',25);
+</code></pre></div>bind的作用是【引用】，这个时候你打开浏览器控制台不会有输出。你点击a 标签的后，才会有输出，点一次，输出一次。<br>粗暴一点说，这就是区别马上【调用】和【引用】的区别。<br><br>上面我们说到，下面三局代码实现是一样的。那么call、apply有什么作用呢？<br><div class="highlight"><pre><code class="language-text">aHello.setYourAge.call(aHello,'王佳欣',25);
+aHello.setYourAge.apply(aHello,['王佳欣',25]);
+aHello.setYourAge('王佳欣',25);
+</code></pre></div><br><b>call、apply有什么作用</b><br>大家开发中是不是有这样的需求（我总是喜欢用需求来作为入口）<br>我们经常会在我们项目中做一些通用的对象，这些对象用来处理我们的一些通用的过程。比如：通用验证方法；(注：很多人喜欢用 继承的基础类 来作为例子.....我一时想不到好的继承例子，就用通用类的例子吧！)<br><br><div class="highlight"><pre><code class="language-text">/*通用验证对象*/
+var validator = {
+    validateName : function(){
+         console.log(this.name);
+    },
+    validateAge  : function(){
+         console.log(this.age)
+    }
+    //.....
+}
+</code></pre></div><br>大家可以看到我们的 【通用对象validator】内，是没有定义属性（name、age）的。<br><br>这个时候比如我们有两个对象需要验证；<br><br><div class="highlight"><pre><code class="language-text">/*对象kobe*/
+var kobe = {
+    name : 'kobe bryant',
+    age  : -1
+}
+
+/*对象 allen*/ 
+var allen = {
+    name : 'allen iverson',
+    age  : 10
+}
+</code></pre></div><br><br>那我们调用验证的时候就需要用到call或者apply了<br>如：<br><div class="highlight"><pre><code class="language-text">var isKobeAgeValid = validator.call(kobe);
+
+var isAllenAgeValid = validator.call(allen);
+</code></pre></div><br>额！差不多了了.....<br><br>这个是我在  <a href="https://www.zhihu.com/question/40892203/answer/93261099?from=profile_answer_card" class="internal">关于javascript的call，apply，bind，bind()与前两种的区别？ - 王佳欣的回答</a><br>的回答；看到了就重新贴一遍。希望可以让你们理解到。
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="32744761-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/93261557">发布于 2016-04-01</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>1 条评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+<button class="item-collapse js-collapse" style="transition: none;"><i class="z-icon-fold"></i>收起</button></div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="12078027" data-atoken="41713760" data-collapsed="0" data-created="1426061847" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/41713760">
+<meta itemprop="answer-id" content="12078027">
+<meta itemprop="answer-url-token" content="41713760">
+<a class="zg-anchor-hidden" name="answer-12078027"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">2</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="javascript:;"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/da8e974dc_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+<span class="name">知乎用户</span></span>
+</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="2" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">2</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="未来" data-entry-url="/question/20289071/answer/41713760">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+thisA.functionA.apply(thisB, [arg1, arg2, ...]) = thisA.functionA.call(thisB, arg1, arg2, ...) = thisB.functionA(arg1, arg2, ...)
+
+<a href="http://www.zhihu.com/question/20289071/answer/41713760" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+thisA.functionA.apply(thisB, [arg1, arg2, ...]) <br>= thisA.functionA.call(thisB, arg1, arg2, ...)<br>= thisB.functionA(arg1, arg2, ...)
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="12078027-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" data-tooltip="s$t$发布于 2015-03-11" target="_blank" href="http://www.zhihu.com/question/20289071/answer/41713760">编辑于 2015-03-31</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="3360002" data-atoken="20429288" data-collapsed="0" data-created="1385688780" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/20429288">
+<meta itemprop="answer-id" content="3360002">
+<meta itemprop="answer-url-token" content="20429288">
+<a class="zg-anchor-hidden" name="answer-3360002"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">1</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<span class="name">匿名用户</span>
+</div>
+<div class="zm-item-vote-info" data-votecount="1" data-za-module="VoteInfo">
+
+
+
+<span class="voters text"><a href="http://www.zhihu.com/question/20289071#" class="more text"><span class="js-voteCount">1</span>&nbsp;人赞同</a></span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="匿名用户" data-entry-url="/question/20289071/answer/20429288">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+简单说就是用对象的实例去替换原来的this，这样的话就可以用其他对象里的方法了
+
+<a href="http://www.zhihu.com/question/20289071/answer/20429288" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+简单说就是用对象的实例去替换原来的this，这样的话就可以用其他对象里的方法了
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="3360002-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/20429288">发布于 2013-11-29</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="40496905" data-atoken="112552097" data-collapsed="0" data-created="1469170309" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="0" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/112552097">
+<meta itemprop="answer-id" content="40496905">
+<meta itemprop="answer-url-token" content="112552097">
+<a class="zg-anchor-hidden" name="answer-40496905"></a>
+
+
+<div class="zm-votebar goog-scrollfloater" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">0</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/mou-liang-qi" target="_blank" data-hovercard="p$t$mou-liang-qi"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/3a75e5144_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$mou-liang-qi" target="_blank" href="http://www.zhihu.com/people/mou-liang-qi">缪良奇</a></span><span title="野前端" class="bio">
+野前端
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0" data-za-module="VoteInfo">
+
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="缪良奇" data-entry-url="/question/20289071/answer/112552097">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+<b>首先，需要明白的是</b><b>, </b><b>使用</b><b>[1,2,3].slice();</b><b>和使用</b><b>Array.prototype.slice.apply ([1,2,3]);</b><b>的原理是一样的</b><b>,</b><b>都是通过改变</b><b>Array.prototype.slice</b><b>函数中的</b><b>this</b><b>指针的指向</b>. 如下: //方式1
+var arr = [1, 2, 3];
+var arrClone = arr.slice();
+//方式2
+var arrAppl…
+
+<a href="http://www.zhihu.com/question/20289071/answer/112552097" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+<b>首先，需要明白的是</b><b>, </b><b>使用</b><b>[1,2,3].slice();</b><b>和使用</b><b>Array.prototype.slice.apply ([1,2,3]);</b><b>的原理是一样的</b><b>,</b><b>都是通过改变</b><b>Array.prototype.slice</b><b>函数中的</b><b>this</b><b>指针的指向</b>.  如下:<br><div class="highlight"><pre><code class="language-js"><span class="c1">//方式1</span>
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">arrClone</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+<span class="c1">//方式2</span>
+<span class="kd">var</span> <span class="nx">arrApplyClone</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span> 
+</code></pre></div><b>方式</b><b>1</b><b>中</b>,我们用数组字面量定义了一个数组arr, 相当于var arr = new Array(1, 2, 3);通过JS的原型继承,我们知道数组arr可以调用Array.prototype中的所有方法,因此当调用arr.slice()时,Array.prototype.slice方法中的this是指向arr数组的. <br><b>方式</b><b>2</b><b>中</b>,apply()方法用于改变函数体内this对象的值,本身Array.prototype.slice函数中的this的值时不确定的,但是当我们使用apply()方法并将arr作为第一个参数传入时,就可以设置Array.prototype.slice函数中的this的值为arr. 因此使用Array.prototype.slice.apply(arr);和arr.slice();其实是没有差别的.<br><br><br>因此我们就可以想下面这样使用 <b>Array.prototype.slice</b>(arguments);来转换类数组arguments了. 
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="40496905-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/112552097">发布于 2016-07-22</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="0">
+<meta name="disableCopyAvatar" content="https://pic1.zhimg.com/3a75e5144_s.jpg">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-6" target="_blank" class="meta-item copyright">禁止转载</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="33700720" data-atoken="95644801" data-collapsed="0" data-created="1460885393" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/95644801">
+<meta itemprop="answer-id" content="33700720">
+<meta itemprop="answer-url-token" content="95644801">
+<a class="zg-anchor-hidden" name="answer-33700720"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">0</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="http://www.zhihu.com/people/tian-yu-55-81" target="_blank" data-hovercard="p$t$tian-yu-55-81"><img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/f3c9bf91791bb105150a7039a7a1c941_s.jpg" class="zm-list-avatar avatar"></a>
+
+<span class="summary-wrapper">
+<span class="author-link-line">
+
+<a class="author-link" data-hovercard="p$t$tian-yu-55-81" target="_blank" href="http://www.zhihu.com/people/tian-yu-55-81">天余</a></span><span title="想写游戏引擎的朝着全栈目标的前端开发初学者" class="bio">
+想写游戏引擎的朝着全栈目标的前端开发初…
+</span>
+</span>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0" data-za-module="VoteInfo">
+
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="天余" data-entry-url="/question/20289071/answer/95644801">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+总感觉像python装饰器
+
+<a href="http://www.zhihu.com/question/20289071/answer/95644801" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+总感觉像python装饰器
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="33700720-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/95644801">发布于 2016-04-17</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="27811654" data-atoken="80958076" data-collapsed="0" data-created="1452451123" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1" data-za-module="AnswerItem">
+<link itemprop="url" href="http://www.zhihu.com/question/20289071/answer/80958076">
+<meta itemprop="answer-id" content="27811654">
+<meta itemprop="answer-url-token" content="80958076">
+<a class="zg-anchor-hidden" name="answer-27811654"></a>
+
+
+<div class="zm-votebar" data-za-module="VoteBar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">0</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<span class="name">匿名用户</span>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0" data-za-module="VoteInfo">
+
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="295899" data-action="/answer/content" data-author-name="匿名用户" data-entry-url="/question/20289071/answer/80958076">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+实例有很多啊 任何一个collection 你都可以借用call函数来做转换 例如NodeList转换成Array call和apply只是函数对象的两个方法而已 当然这样就意味着你可以改变具备函数对象特性的所有对象的上下文 你可以通过用它们帮助你写出更优雅的代码 call apply一般…
+
+<a href="http://www.zhihu.com/question/20289071/answer/80958076" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+实例有很多啊 <br>任何一个collection<br>你都可以借用call函数来做转换<br>例如NodeList转换成Array<br><br>call和apply只是函数对象的两个方法而已<br>当然这样就意味着你可以改变具备函数对象特性的所有对象的上下文 <br>你可以通过用它们帮助你写出更优雅的代码<br>call apply一般用于对函数的抽象 可以看看一些函数式编程方面的应用 或者能知道它们的用意
+</div>
+
+
+</div>
+<a class="zg-anchor-hidden ac" name="27811654-comment"></a>
+<div class="zm-item-meta answer-actions clearfix js-contentActions">
+<div class="zm-meta-panel">
+
+<a itemprop="url" class="answer-date-link meta-item" target="_blank" href="http://www.zhihu.com/question/20289071/answer/80958076">发布于 2016-01-11</a>
+
+<a href="http://www.zhihu.com/question/20289071#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-thank" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-share goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-collect"><i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-noHelp">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="http://www.zhihu.com/question/20289071#" class="meta-item zu-autohide js-report">举报</a>
+
+
+
+
+<meta name="copyrightStatus" content="1">
+<meta name="disableCopyAvatar" content="">
+
+<span class="zg-bull">•</span>
+
+<a href="http://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright">
+作者保留权利
+</a>
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </div><a aria-role="button" class="zg-btn-white zu-button-more">更多</a>
+
+<div id="zh-question-collapsed-link" class="zu-question-collap-title" style="display:none">
+<a href="javascript:;" name="expand" class="zg-link-gray" id="zh-question-collapsed-switcher">
+<span id="zh-question-collapsed-num">1</span> 个回答被折叠
+</a>
+（<a target="_blank" href="http://www.zhihu.com/question/20120168" class="zg-link-gray">为什么？</a>）
+</div>
+<div id="zh-question-collapsed-wrap" class="zh-question-answer-wrapper" style="display:none"></div>
+<a name="draft"></a>
+<div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
+<div class="zm-editable-tip zu-answer-form-disabled-wrap" style="display: none;"></div>
+<div class="zm-editable-content" style="display: none;"><a href="javascript:;" class="zu-edit-button" name="edit"><i class="zu-edit-button-icon"></i>修改</a></div><div class="zm-editable-editor-wrap" style=""><div class="zh-answer-form clearfix"><div><div class="zu-answer-form-title">我来回答这个问题<span></span></div></div></div><div class="zm-editable-editor-outer"><div class="zm-editable-toolbar-container goog-scrollfloater"><div class="goog-toolbar goog-toolbar-horizontal" role="toolbar" tabindex="-1" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button" title="写作模式" role="button" id="toggleFullScreen" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-max" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="粗体 (ctrl+b)" role="button" aria-pressed="false" id="+bold" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-bold" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="斜体 (ctrl+i)" role="button" aria-pressed="false" id="+italic" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-italic" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="下划线 (ctrl+u)" role="button" aria-pressed="false" id="+underline" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-underline" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-toolbar-separator goog-toolbar-separator-disabled goog-inline-block" aria-disabled="true" role="separator" id=":2d" style="-webkit-user-select: none;">&nbsp;</div><div class="goog-inline-block goog-toolbar-button" title="引用内容" role="button" aria-pressed="false" id="+blockquote" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-blockquote" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="插入代码" role="button" aria-pressed="false" id="+code" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-code" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="有序列表" role="button" aria-pressed="false" id="+insertOrderedList" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-insertOrderedList" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="无序列表" role="button" aria-pressed="false" id="+insertUnorderedList" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-insertUnorderedList" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="插入公式" role="button" id="+equation" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-equation" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-toolbar-separator goog-toolbar-separator-disabled goog-inline-block" aria-disabled="true" role="separator" id=":2e" style="-webkit-user-select: none;">&nbsp;</div><div class="goog-inline-block goog-toolbar-button" title="插入图片" role="button" id="image" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-image" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="插入视频" role="button" id="video" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-video" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-toolbar-separator goog-toolbar-separator-disabled goog-inline-block" aria-disabled="true" role="separator" id=":2f" style="-webkit-user-select: none;">&nbsp;</div><div class="goog-inline-block goog-toolbar-button" title="清除格式" role="button" id="+removeFormat" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-removeFormat" style="-webkit-user-select: none;"></div></div></div></div><div class="tr-spinner spinner-gray" style="display: none;"></div></div></div><div class="zm-editable-editor-field-wrap"><div id="mock:16" class="zm-editable-editor-field-element editable" g_editable="true" role="textbox" contenteditable="true" style="font-style: italic;"><p><span style="font-style: normal;color: #999;">写回答…</span></p></div><div class="editable-dropzone"><div class="row"><div class="cell"><div>拖拽至此处上传</div></div></div></div></div><div class="signin-mask-tip-answer"></div><div class="mention-popup" style="display: none;"><div class="writing-bg"><input role="combobox" aria-autocomplete="list" autocomplete="off"></div><div class="tip">想用 @ 提到谁？</div></div></div><div class="zm-command"><a class="zg-r3px zg-btn-blue" href="javascript:">我要回答</a></div><div class="zm-command clearfix" style="display: none;"><label class="zg-left anno-box" style="-webkit-user-select: none;"><input name="anno-checkbox" type="checkbox" style="-webkit-user-select: none;"> 匿名 <span style="-webkit-user-select: none;">&nbsp;</span></label> <label class="zg-left copyright-box"><select name="copyright"><option value="1">允许规范转载</option><option value="2">允许付费转载</option><option value="0">禁止转载</option></select><a href="http://www.zhihu.com/terms#sec-licence-6" class="demo-trigger" target="_blank" hidden="hidden"><i class="zg-icon zg-icon-question-mark" style="margin-left: 5px;" id="copyright_question_mark" data-copyright-demo="true"></i></a></label> <span class=" zg-right"><a class="submit-button zg-btn-blue" name="save" href="javascript:">发布回答</a></span><div class="draft-controls zg-right "><span class="draft-saved-info" style="display: none;"><a class="draft-clear-button goog-inline-block" href="http://www.zhihu.com/question/20289071#" data-tooltip="s$b$删除草稿"><i class="zg-icon zg-icon-bin"></i><span class="hide-text">清除草稿</span></a><span class="draft-saved-time"></span></span></div></div></div>
+</div>
+<!-- 版权演示 -->
+
+<script type="text/x-template" id="copyright-demo-template">
+<article>
+
+<section>
+<p class="copyright-demo-title"> 这是你的回答正文 </p>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+</section>
+
+<section>
+<p class="copyright-demo-title"> 当其他人想复制你的一段回答 </p>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region1">
+<span class="copyright-ico-indicator" id="copyright-demo-indicator"></span>
+</div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region2"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region3"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region4"></div>
+<div class="copyright-demo-region"></div>
+</section>
+
+<section id="copyright-demo-frame3">
+<p class="copyright-demo-title copyright-demo-effect"> 复制将受限，同时会弹出提醒 </p>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region"></div>
+<span class="copyright-ico-pointer copyright-demo-pointer"></span>
+</section>
+</article>
+</script>
+
+
+
+</div>
+</div>
+
+
+<div class="zu-main-sidebar" data-za-module="RightSideBar">
+
+<div class="zm-side-section">
+<div class="zm-side-section-inner">
+<div class="SignFlow SignFlow--bordered" id="SidebarSignFlow">
+<div class="SignFlow-panel">
+<div class="title register">
+<h1>加入知乎</h1>
+<h2>与世界分享你的知识、经验和见解</h2>
+</div>
+<div class="view register SignupForm" data-za-module="SignUpForm">
+<form action="http://www.zhihu.com/register/email" method="POST" novalidate="novalidate">
+<div class="input-wrapper">
+<input type="text" name="fullname" aria-label="姓名" data-placeholder="姓名" required="" placeholder="姓名">
+</div>
+<div class="input-wrapper">
+
+<input type="text" name="phone_num" class="account" aria-label="手机号（仅支持中国大陆）" data-placeholder="手机号（仅支持中国大陆）" required="" placeholder="手机号（仅支持中国大陆）">
+
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" hidden=""> 
+<input type="password" name="password" aria-label="密码" data-placeholder="密码（不少于 6 位）" required="" placeholder="密码（不少于 6 位）">
+<span class="z-ico-show-password"></span>
+</div>
+<div class="input-wrapper captcha-module" data-type="en" style="display: block;">
+<input id="captcha" name="captcha" placeholder="验证码" required="" data-rule-required="true" data-msg-required="请填写验证码">
+<div class="captcha-container">
+
+<img class="js-refreshCaptcha captcha" width="120" height="30" data-tooltip="s$t$看不清楚？换一张" alt="验证码" src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/captcha.gif" style="display: inline;">
+</div>
+</div>
+<div class="actions">
+
+<input type="submit" value="注册" class="submit zg-btn-blue">
+
+</div>
+<div class="sns clearfix">
+<span>已有帐号？<a href="http://www.zhihu.com/question/20289071#" class="switch-to-login">登录</a></span>
+</div>
+</form>
+</div>
+</div>
+<div class="SignFlow-panel" hidden="">
+<div class="LoginForm">
+<div class="title login">
+<h1>登录知乎</h1>
+<h2>与世界分享你的知识、经验和见解</h2>
+</div>
+<div class="view login" data-za-module="SignInForm">
+<form method="POST" novalidate="novalidate">
+<div class="input-wrapper">
+<input type="text" name="account" class="account" aria-label="手机号或邮箱" placeholder="手机号或邮箱" required="">
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" name="password" aria-label="密码" placeholder="密码" required="">
+<span class="z-ico-show-password"></span>
+</div>
+<div class="input-wrapper captcha-module" data-type="en">
+<input id="captcha" name="" placeholder="验证码" required="" data-rule-required="true" data-msg-required="请填写验证码" class="is-ignoreValidation">
+<div class="captcha-container">
+
+<img class="js-refreshCaptcha captcha" width="120" height="30" data-tooltip="s$t$看不清楚？换一张" alt="验证码">
+</div>
+</div>
+<div class="actions">
+
+<input type="submit" value="登录" class="submit zg-btn-blue">
+
+</div>
+<div class="sns clearfix">
+<label class="remember-me"><input type="checkbox" name="remember_me" checked="" value="true">记住我</label>
+<span class="middot">·</span>
+<button class="unable-login" type="button">无法登录？</button>
+<button type="button" class="js-show-sns-buttons is-visible">社交帐号登录</button>
+<div class="sns-buttons">
+<button type="button" class="wechat"><span class="ico sprite-global-icon-wechat-gray"></span>微信</button>
+<button type="button" class="weibo"><span class="ico sprite-global-icon-weibo-gray"></span>微博</button>
+<button type="button" class="qq"><span class="ico sprite-global-icon-qq-gray"></span>QQ</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="zm-side-section">
+<div class="DownloadApp">
+<button class="DownloadApp-button">
+<span class="sprite-global-icon-qrcode"></span>
+下载知乎 App
+</button>
+</div>
+</div>
+
+
+
+<div class="zm-side-section">
+<div class="zm-side-section-inner zg-gray-normal" id="zh-question-side-header-wrap">
+<button data-follow="q:m:button" class="follow-button zg-follow zg-btn-green" data-id="295899">关注问题</button>
+
+592
+人关注该问题
+
+</div>
+</div>
+
+
+<div class="shameimaru-section" data-info="{&quot;category&quot;: &quot;2&quot;, &quot;ad_zone_id&quot;: 3, &quot;version&quot;: &quot;1&quot;, &quot;ad_id&quot;: 1735, &quot;timestamp&quot;: 1476236006.001045, &quot;sign&quot;: &quot;d2f9e267f731bac99410e62b421ae381&quot;}" data-close="https://sugar.zhihu.com/track?vs=1&amp;ai=1735&amp;ut=d4883dbe4e4a45b99b8f528a1015fbbc&amp;cg=2&amp;ts=1476236006.0&amp;si=76c02787ea844fddb5f9782aae4a0dcf&amp;lu=0&amp;hn=ad-engine.ad-engine.3f5e9d52&amp;at=close&amp;pf=Windows&amp;az=3&amp;sg=dfcdd4cba8342f17b18e476f0f95eb37" data-za-module="AdItem">
+<a class="shameimaru-link" href="https://sugar.zhihu.com/track?vs=1&amp;ai=1735&amp;ut=d4883dbe4e4a45b99b8f528a1015fbbc&amp;tu=https%3A//www.zhihu.com/roundtable/nobelprize2016&amp;cg=2&amp;ts=1476236006.0&amp;si=76c02787ea844fddb5f9782aae4a0dcf&amp;lu=0&amp;hn=ad-engine.ad-engine.3f5e9d52&amp;at=click&amp;pf=Windows&amp;az=3&amp;sg=d2f9e267f731bac99410e62b421ae381" target="_blank" rel="nofollow">
+<img src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/v2-b96ed0207ec4732273c7a81da0badb4a_270x225.png" srcset="https://pic3.zhimg.com/v2-b96ed0207ec4732273c7a81da0badb4a_540x450.png 2x" alt="内页右上">
+</a>
+<meta itemprop="view_url" content="[&quot;https://sugar.zhihu.com/track?vs=1&amp;ai=1735&amp;ut=d4883dbe4e4a45b99b8f528a1015fbbc&amp;cg=2&amp;ts=1476236006.0&amp;si=76c02787ea844fddb5f9782aae4a0dcf&amp;lu=0&amp;hn=ad-engine.ad-engine.3f5e9d52&amp;at=view&amp;pf=Windows&amp;az=3&amp;sg=dfcdd4cba8342f17b18e476f0f95eb37&quot;]">
+<a class="shameimaru-close z-ico-shameimaru-close" data-tooltip="s$b$不再显示" rel="nofollow"></a>
+
+<img class="shameimaru-pixel" src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/track">
+
+</div>
+
+<div class="zm-side-section">
+<div class="zm-side-section-inner">
+<div id="zh-question-related-questions" class="zh-question-related-questions clearfix" data-za-module="RelatedQuestions">
+
+<a class="zg-right next">换一换</a>
+
+<h3>相关问题</h3>
+<ul itemprop="relatedQuestion" itemscope="" itemtype="http://schema.org/ItemList">
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/28207685" data-id="3465656">
+Web 前后端分离的意义大吗？
+</a> <span class="num">51 个回答</span><meta itemprop="followerCount" content="3275">
+</li>
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/19653241" data-id="41199">
+使用 Node.js 的优势和劣势都有哪些？
+</a> <span class="num">49 个回答</span><meta itemprop="followerCount" content="3673">
+</li>
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/19769761" data-id="87981">
+做前端开发必需要掌握切图技能吗？
+</a> <span class="num">49 个回答</span><meta itemprop="followerCount" content="1127">
+</li>
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/20284816" data-id="294184">
+你为什么选择 JavaScript ？
+</a> <span class="num">30 个回答</span><meta itemprop="followerCount" content="280">
+</li>
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/24317445" data-id="1908783">
+中国国内 JavaScript 圈的现状如何？
+</a> <span class="num">49 个回答</span><meta itemprop="followerCount" content="1117">
+</li>
+
+<li hidden="" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/19588629" data-id="15427">
+一名合格的前端工程师的知识结构是怎样的？
+</a> <span class="num">33 个回答</span><meta itemprop="followerCount" content="2525">
+</li>
+
+<li hidden="" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/20635785" data-id="434733">
+如何写出优美的 JavaScript 代码？
+</a> <span class="num">46 个回答</span><meta itemprop="followerCount" content="1244">
+</li>
+
+<li hidden="" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/20776815" data-id="491136">
+浏览器引擎保持多样性有什么好处吗？
+</a> <span class="num">26 个回答</span><meta itemprop="followerCount" content="507">
+</li>
+
+<li hidden="" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/20400060" data-id="340327">
+相比于 Django、Pylon 等 Python 框架，Ruby on Rails 是否有很大的技术优势？
+</a> <span class="num">19 个回答</span><meta itemprop="followerCount" content="452">
+</li>
+
+<li hidden="" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question" data-za-module="QuestionItem">
+<a class="question_link" href="http://www.zhihu.com/question/27852694" data-id="3323918">
+如何评价 React Native？
+</a> <span class="num">56 个回答</span><meta itemprop="followerCount" content="6759">
+</li>
+
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div id="zh-footer" class="zh-footer">
+<div class="content zg-wrap clearfix">
+<ul>
+
+<li><a href="https://liukanshan.zhihu.com/" target="_blank">刘看山</a></li>
+
+<li><a href="http://www.zhihu.com/app" target="_blank">移动应用</a></li>
+<li><a href="http://www.zhihu.com/careers">加入知乎</a></li>
+<li><a href="http://www.zhihu.com/terms" target="_blank">知乎协议</a></li>
+<li><a href="http://www.zhihu.com/contact">联系我们</a></li>
+
+</ul>
+
+<span class="copy">© 2016 知乎</span>
+
+</div>
+</div>
+
+<script type="text/json" class="json-inline" data-name="guiders2">{}</script>
+<script type="text/json" class="json-inline" data-name="current_user">["","","","-1","",0,0]</script>
+<script type="text/json" class="json-inline" data-name="user_status">[null,null]</script>
+<script type="text/json" class="json-inline" data-name="env">["zhihu.com","comet.zhihu.com",false,null,false]</script>
+<script type="text/json" class="json-inline" data-name="permissions">[]</script>
+
+
+<script type="text/json" class="json-inline" data-name="ga_vars">{"user_created":0,"now":1476197868000,"abtest_mask":"------------------------------","user_attr":[0,0,0,"-","-"],"user_hash":0}</script>
+
+<script type="text/json" class="json-inline" data-name="ra-urls">{"Copyright":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Copyright.7e4d2b04.js","PaymentApp":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/PaymentApp.49601acb.js","Community":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Community.3ddc9a9e.js","Report":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Report.7402881c.js","common":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/common.3768774e.js","BalanceApp":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/BalanceApp.f3d1061f.js","AnswerWarrant":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/AnswerWarrant.e1a4330d.js","OrgAnalytics":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/OrgAnalytics.6d7ab6bd.js","CommentApp":"http:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CommentApp.e0ec3f50.js"}</script>
+
+<script type="text/json" class="json-inline" data-name="current_question">{"status":"normal","editPermission":false,"qid":295899,"askAboutMember":0,"isEditLocked":false,"detailEditReasonRequired":true,"isAnon":0,"showInvitePanel":false,"isOrg":false,"isLocked":0,"urlToken":20289071}</script>
+<script type="text/json" class="json-inline" data-name="current_question_owner">false</script>
+<script type="text/json" class="json-inline" data-name="draft">[]</script>
+<script type="text/json" class="json-inline" data-name="my_answer">{}</script>
+<script type="text/json" class="json-inline" data-name="current_question_bio">{"selected_bio":null,"type":null,"value":""}</script>
+
+<script type="text/json" class="json-inline" data-name="redirect_to">""</script>
+
+
+<script src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/vendor.cb14a042.js"></script>
+<script src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/base.7b4291e9.js"></script>
+
+<script src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/common.25db9b80.js"></script>
+
+
+<script src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/richtexteditor.d01e0806.js" async=""></script>
+<script src="./如何理解和熟练运用js中的call及apply？ - 前端开发 - 知乎_files/page-main.72ff8927.js"></script>
+<meta name="entry" content="ZH.entrySQ" data-module-id="page-main">
+
+<script type="text/zscript" znonce="64fa2a7f6ddd4a5e8dc3b5cc75565cab"></script>
+
+<input type="hidden" name="_xsrf" value="8ab37d927210d271a1d1053b1ab601b6">
+
+<div class="zh-backtotop" style="opacity: 1;"><a data-action="backtotop" data-tooltip="s$r$回到顶部" href="javascript:;" class="btn-backtotop btn-action"><div class="arrow"></div><div class="stick"></div></a></div><div id="zh-hovercard"></div><div id="zh-tooltip"></div><div id="copyright-demo-helper" style="display: none; position: absolute;"><p class="copyright-demo-helper-intro"> 勾选后，我们将限制其他用户的复制操作，并给予提醒 </p><p class="copyright-demo-helper-btn"> 查看演示 </p></div><div class="copyright-notification"><div class="user-image-container"><img class="user-image" src="http://www.zhihu.com/question/20289071"></div><div class="tooltip right noty-tooltip"><div class="tooltip-arrow arrow"> </div><div class="tooltip-inner inner">保留所有权利，禁止转载</div></div></div><script type="text/template" class="register-template">
+<div class="title register">
+<h1>加入知乎</h1>
+<h2>与世界分享你的知识、经验和见解</h2>
+</div>
+<div class="view register SignupForm" data-za-module="SignUpForm">
+<form action="/register/email" method="POST">
+<div class="input-wrapper">
+<input type="text" name="fullname" aria-label="姓名" placeholder="姓名" required>
+</div>
+<div class="input-wrapper">
+
+
+<input type="text" name="phone_num" class="account" data-is-domestic="true" aria-label="手机号（仅支持中国大陆）" placeholder="手机号（仅支持中国大陆）" required>
+
+
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" hidden> 
+<input type="password" name="password" aria-label="密码" placeholder="密码（不少于 6 位）" required>
+<span class="z-ico-show-password"></span>
+</div>
+<div class="input-wrapper captcha-module" data-type="en" >
+<input id="captcha" name="captcha" placeholder="验证码" required data-rule-required="true" data-msg-required="请填写验证码">
+<div class="captcha-container">
+
+<img class="js-refreshCaptcha captcha" width="120" height="30" data-tooltip="s$t$看不清楚？换一张"  alt="验证码">
+</div>
+</div>
+<div class="actions">
+
+<button class="submit blue-button">注册</button>
+
+</div>
+<div class="sns clearfix">
+<span>已有帐号？<a href="#" class="switch-to-login">登录</a></span>
+</div>
+</form>
+</div>
+</script>
+<script type="text/template" class="phone-verification-template">
+<div class="title verification">
+<h1>验证手机</h1>
+<h2>请输入你收到的 6 位数短信验证码</h2>
+</div>
+<div class="view verification">
+<form>
+<div class="input-wrapper">
+<input type="text" name="phone_num" aria-label="手机号" placeholder="手机号" required>
+</div>
+<div class="input-wrapper verification-code">
+<input type="text" name="verification_code" aria-label="验证码" placeholder="6 位数验证码" maxlength="6" required>
+<button type="button" class="send-code">重发验证码</button>
+</div>
+<div class="submit-wrapper">
+<button class="submit blue-button">进入知乎</button>
+</div>
+</form>
+</div>
+</script>
+<script type="text/template" class="login-template">
+<div class="LoginForm">
+<div class="title login">
+<h1>登录知乎</h1>
+<h2>与世界分享你的知识、经验和见解</h2>
+</div>
+<div class="view login" data-za-module="SignInForm">
+<form method="POST">
+<div class="input-wrapper">
+<input type="text" name="account" class="account" aria-label="手机号或邮箱" placeholder="手机号或邮箱" required>
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" name="password" aria-label="密码" placeholder="密码" required>
+<span class="z-ico-show-password"></span>
+</div>
+<div class="input-wrapper captcha-module" data-type="en" >
+<input id="captcha" name="captcha" placeholder="验证码" required data-rule-required="true" data-msg-required="请填写验证码">
+<div class="captcha-container">
+
+<img class="js-refreshCaptcha captcha" width="120" height="30" data-tooltip="s$t$看不清楚？换一张"  alt="验证码">
+</div>
+</div>
+<div class="actions">
+
+<button class="submit blue-button">登录</button>
+
+</div>
+<div class="sns clearfix">
+<label class="remember-me"><input type="checkbox" name="remember_me" checked value="true">记住我</label>
+<span class="middot">·</span>
+<button class="unable-login" type="button">无法登录？</button>
+<button type="button" class="js-show-sns-buttons is-visible">社交帐号登录</button>
+<div class="sns-buttons">
+<button type="button" class="wechat"><span class="ico sprite-global-icon-wechat-gray"></span>微信</button>
+<button type="button" class="weibo"><span class="ico sprite-global-icon-weibo-gray"></span>微博</button>
+<button type="button" class="qq"><span class="ico sprite-global-icon-qq-gray"></span>QQ</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</script>
+<script type="text/template" class="login-sms-verification-template">
+<div class="title">
+<h1>为保护你的帐号安全，请验证手机</h1>
+<h2>短信验证码已发送至以下号码</h2>
+</div>
+<div class="view">
+<form>
+<div class="input-wrapper">
+<input type="text" name="phone_num" aria-label="手机号" placeholder="手机号" required disabled>
+</div>
+<div class="input-wrapper verification-code">
+<input type="text" name="verification_code" aria-label="验证码" placeholder="6 位数验证码" maxlength="6" required>
+<button type="button" class="send-code">重发验证码</button>
+</div>
+<div class="submit-wrapper">
+<button class="submit blue-button">登录</button>
+</div>
+</form>
+</div>
+</script>
+<script type="text/template" class="unable-login-template">
+<div class="title start">
+<h1>无法登录</h1>
+<h2>我们提供两种方式帮助你重新登录知乎</h2>
+</div>
+<div class="view start" data-za-module="UnableSignInForm">
+<button class="blue-button reset-password">找回密码</button>
+<button class="blue-button sms-login">使用手机验证码登录</button>
+</div>
+<div class="title reset-password-verification">
+<h1>找回密码</h1>
+<h2>
+
+验证码将会发送至你的注册邮箱或手机
+
+</h2>
+</div>
+<div class="view reset-password-verification" data-za-module="RecoverPasswordForm">
+<form>
+<div class="input-wrapper">
+<input type="text" name="account" class="account" aria-label="手机号或邮箱" placeholder="手机号或邮箱" required>
+</div>
+<div class="input-wrapper captcha-module" data-type="en" >
+<input id="captcha" name="captcha" placeholder="验证码" required data-rule-required="true" data-msg-required="请填写验证码">
+<div class="captcha-container">
+
+<img class="js-refreshCaptcha captcha" width="120" height="30" data-tooltip="s$t$看不清楚？换一张"  alt="验证码">
+</div>
+</div>
+<div class="submit-wrapper">
+<button class="submit blue-button">获取验证码</button>
+</div>
+</form>
+</div>
+<div class="title reset-password">
+<h1>重设密码</h1>
+<h2>
+
+验证码将会发送至你的注册邮箱或手机
+
+</h2>
+</div>
+<div class="view reset-password" data-za-module="ResetPasswordForm">
+<form action="/resetpassword/email">
+<div class="input-wrapper">
+<input type="text" name="account" class="account" aria-label="手机号或邮箱" placeholder="手机号或邮箱" required>
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" hidden> 
+<input type="password" name="password" aria-label="新密码" placeholder="新密码" required>
+<span class="z-ico-show-password"></span>
+</div>
+<div class="input-wrapper verification-code">
+<input type="text" name="verification_code" aria-label="邮箱收到的" placeholder="邮箱收到的 6 位数验证码" maxlength="6" required>
+<button type="button" class="send-code">重发验证码</button>
+</div>
+<div class="submit-wrapper">
+<button class="submit blue-button">重设密码</button>
+</div>
+</form>
+</div>
+<div class="title sms-login-verification">
+<h1>登录知乎</h1>
+<h2>验证码将会发送至你的手机</h2>
+</div>
+<div class="view sms-login-verification" data-za-module="SMSVerificationForm">
+<form>
+<div class="input-wrapper">
+<input type="text" name="phone_num" aria-label="手机号" placeholder="手机号" required>
+</div>
+<div class="input-wrapper captcha-module" data-type="en" >
+<input id="captcha" name="captcha" placeholder="验证码" required data-rule-required="true" data-msg-required="请填写验证码">
+<div class="captcha-container">
+
+<img class="js-refreshCaptcha captcha" width="120" height="30" data-tooltip="s$t$看不清楚？换一张"  alt="验证码">
+</div>
+</div>
+<div class="submit-wrapper">
+<button class="submit blue-button">获取验证码</button>
+</div>
+</form>
+</div>
+<div class="title sms-login">
+<h1>登录知乎</h1>
+<h2>输入你收到的 6 位数短信验证码</h2>
+</div>
+<div class="view sms-login" data-za-module="SMSSignInForm">
+<form>
+<div class="input-wrapper">
+<input type="text" name="phone_num" aria-label="手机号" placeholder="手机号" required>
+</div>
+<div class="input-wrapper verification-code">
+<input type="text" name="verification_code" aria-label="验证码" placeholder="6 位数验证码" maxlength="6" required>
+<button type="button" class="send-code">重发验证码</button>
+</div>
+<div class="submit-wrapper">
+<button class="submit blue-button">登录知乎</button>
+</div>
+</form>
+</div>
+</script>
+<script type="text/template" class="oauth-register-template">
+<div class="title register">
+<h1>注册新帐号</h1>
+<h2>请填写你的真实姓名</h2>
+</div>
+<div class="view register">
+<form>
+<div class="input-wrapper">
+<input type="text" name="fullname" aria-label="姓名" placeholder="姓名" class="js-name" required>
+</div>
+<div class="input-wrapper captcha-module" data-type="en" >
+<input id="captcha" name="captcha" placeholder="验证码" required data-rule-required="true" data-msg-required="请填写验证码">
+<div class="captcha-container">
+
+<img class="js-refreshCaptcha captcha" width="120" height="30" data-tooltip="s$t$看不清楚？换一张"  alt="验证码">
+</div>
+</div>
+<div class="submit-wrapper">
+<button class="submit blue-button full-width">注册</button>
+</div>
+<div class="switch-wrapper">
+<a href="/signin" class="switch-to-login">使用已有帐号登录</a></span>
+</div>
+</form>
+</div>
+<div class="title bound">
+<h1>登录知乎</h1>
+<h2>该微博曾绑定过以下帐号</h2>
+</div>
+<div class="view bound">
+<img src="" width="50px" height="50px">
+<span class="name"></span>
+<button class="blue-button bind-login">绑定此帐号并登录</button>
+<button class="button register">不绑定，用微博创建新帐号</button>
+</div>
+<div class="title registered">
+<h1>微博邮箱已注册知乎</h1>
+<h2>已注册至如下帐号</h2>
+</div>
+<div class="view registered">
+<img src="" width="50px" height="50px">
+<span class="name"></span>
+<button class="blue-button bind-login">绑定此帐号并登录</button>
+<button class="button register">不绑定，用微博创建新帐号</button>
+</div>
+<div class="title bind-login">
+<h1>登录知乎</h1>
+<h2>与世界分享你的知识、经验和见解</h2>
+</div>
+<div class="view bind-login">
+<form>
+<div class="input-wrapper">
+<input type="text" name="account" class="account" aria-label="手机号或邮箱" placeholder="手机号或邮箱" required disabled>
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" name="password" aria-label="密码" placeholder="密码" required>
+<span class="z-ico-show-password"></span>
+</div>
+<div class="actions">
+<button class="unable-login" type="button">无法登录？</button>
+<button class="submit blue-button">绑定并登录</button>
+</div>
+</form>
+</div>
+</script><div style="display: none;"><div class="lang-select collapsed"><div class="title-button" style="-webkit-user-select: none;">选择语言</div><i class="zg-icon zg-icon-double-arrow"></i><div class="input-wrapper"><input class="filter-input zg-form-text-input" placeholder="搜索语言" role="combobox" aria-autocomplete="list"></div></div></div><div></div><div class="zm-votebar goog-scrollfloater goog-scrollfloater-floating" data-za-module="VoteBar" style="left: 194.5px; width: 38px; float: none; position: fixed; top: 44px;">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">10</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div></body></html>
